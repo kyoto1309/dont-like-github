@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,71 +9,114 @@
     <link href="style.css" rel="stylesheet">
 
     <style>
-
-
         #Why {
             width: 100%;
             height: 100px;
             display: none;
         }
 
+        .disaster {
+            background-color: darkred;
+            color: white;
+            animation: shake 0.15s infinite;
+            text-align: center;
+        }
 
+        @keyframes shake {
+            0% { transform: translate(3px, 3px); }
+            25% { transform: translate(-3px, -3px); }
+            50% { transform: translate(3px, -3px); }
+            75% { transform: translate(-3px, 3px); }
+            100% { transform: translate(0, 0); }
+        }
 
+        .randomForm {
+            position: fixed;
+            background-color: black;
+            color: red;
+            padding: 20px;
+            border: 3px solid red;
+            border-radius: 10px;
+            z-index: 9999;
+            width: 220px;
+        }
     </style>
 
-    <script>
-        alert("Azul")
-        var Name = prompt("Whats your name??")
-        alert("Hello " + Name)
-        var State = prompt("Are you good?")
+</head>
 
-        if (State == "No" || State == "no" || State == "Noo" || State == "noo")
+<body>
+
+    <header></header>
+
+    <main>
+        <textarea id="Why"></textarea>
+    </main>
+
+    <footer></footer>
+
+    <script>
+
+        alert("Azul");
+
+        var Name = prompt("Whats your name??");
+        alert("Hello " + Name);
+
+        var State = prompt("Are you good? ANSWER WITH 'Yes' or 'No' ONLY IF YOU DONT. I WILL BE VERY MADDDDD!!!!!");
+
+        if (State == "No" || State == "no" || State == "Noo" || State == "noo" || State == "NO")
         {
-            alert("Why? :(")
+            alert("Why? :(");
             document.getElementById("Why").style.display = "block";
         }
 
-        else if (State == "Yes" || State == "yes" || State == "ye" || State == "Ye" || State == "Yee")
+        else if (State == "Yes" || State == "yes" || State == "ye" || State == "Ye" || State == "Yee" || State == "YES")
         {
-            alert("Very good stay like that :)")
+            alert("Very good stay like that :)");
+        }
+
+        else
+        {
+            alert("I TOLD YOU TO ANSWER ONLY WITH 'YES' OR 'NO' BUT YOU DID NOT FOLLOW WHAT I SAID!");
+
+            document.body.classList.add("disaster");
+
+            document.body.innerHTML = `
+                <h1>🚨 YOU HAVE CAUSED A DISASTER 🚨</h1>
+                <h2>THE WORLD IS ENDING!</h2>
+                <p>YOU WERE WARNED. YOU DID NOT LISTEN.</p>
+            `;
+
+            var count = 0;
+
+            var disasterTimer = setInterval(function()
+            {
+                var form = document.createElement("div");
+
+                form.className = "randomForm";
+
+                form.innerHTML = `
+                    <h2>🚨 ERROR 🚨</h2>
+                    <p>YOU DID NOT FOLLOW THE RULES!</p>
+                    <input placeholder="BEG FOR FORGIVENESS">
+                    <button>HELP ME</button>
+                `;
+
+                form.style.left = Math.random() * Math.max(0, window.innerWidth - 240) + "px";
+                form.style.top = Math.random() * Math.max(0, window.innerHeight - 160) + "px";
+
+                document.body.appendChild(form);
+
+                count++;
+
+                if (count >= 30)
+                {
+                    clearInterval(disasterTimer);
+                }
+
+            }, 300);
         }
 
     </script>
 
-</head>
-
-
-<body>
-
-
-
-    <header>
-        <nav>
-            
-
-           
-        </nav>
-
-
-
-
-    </header>
-
-    <main>
-
-        <textarea id="Why"></textarea>
-
-    </main>
-
-    <footer>
-    </footer>
-
-    
-
 </body>
 </html>
-
-
-
-
-
